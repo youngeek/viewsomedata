@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # Load the CSV file into a Pandas DataFrame
 @st.cache
@@ -22,18 +21,11 @@ x_axis_column = st.sidebar.selectbox("Select X-Axis Column:", df.columns, index=
 # Select the columns for the bar chart
 bar_columns = st.sidebar.multiselect("Select Bar Columns:", df.columns[1:], default=['dia3'])
 
-# Create the bar chart
+# Create the bar chart using Streamlit
 st.write(f"### Bar Chart - X-Axis: {x_axis_column}, Bars: {', '.join(bar_columns)}")
 
-fig, ax = plt.subplots()
-for col in bar_columns:
-    ax.bar(df[x_axis_column], df[col], label=col)
+# Group by the selected x-axis column and calculate the sum of the selected bar columns
+bar_data = df.groupby(x_axis_column)[bar_columns].sum()
 
-# Set labels and title
-ax.set_xlabel(x_axis_column)
-ax.set_ylabel("Values")
-ax.set_title("Bar Chart")
-ax.legend()
-
-# Display the chart using Streamlit
-st.pyplot(fig)
+# Plot the bar chart using Streamlit
+st.bar_chart(bar_data)
