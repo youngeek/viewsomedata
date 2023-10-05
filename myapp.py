@@ -30,7 +30,7 @@ bar_data = df.groupby(x_axis_column)[bar_columns].sum()
 # Plot the bar chart using Streamlit
 st.bar_chart(bar_data)
 
-'''------line chart----------''''
+'''------line chart----------'''
 # Set the page title
 st.title("Line Chart Example with Streamlit")
 
