@@ -4,7 +4,7 @@ import pandas as pd
 # Load the CSV file into a Pandas DataFrame
 @st.cache
 def load_data():
-    df = pd.read_csv('data.csv')
+    df = pd.read_csv('counts.csv')
     return df
 
 df = load_data()
