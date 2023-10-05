@@ -29,3 +29,25 @@ bar_data = df.groupby(x_axis_column)[bar_columns].sum()
 
 # Plot the bar chart using Streamlit
 st.bar_chart(bar_data)
+
+'''------line chart----------''''
+# Set the page title
+st.title("Line Chart Example with Streamlit")
+
+# Create a sidebar for user input (optional)
+st.sidebar.header("Configuration")
+
+# Select the column for x-axis (device_id)
+x_axis_column = st.sidebar.selectbox("Select X-Axis Column:", df.columns, index=0)
+
+# Select the columns for the line chart
+line_columns = st.sidebar.multiselect("Select Line Columns:", df.columns[1:], default=['dia3'])
+
+# Create the line chart using Streamlit
+st.write(f"### Line Chart - X-Axis: {x_axis_column}, Lines: {', '.join(line_columns)}")
+
+# Group by the selected x-axis column and calculate the sum of the selected line columns
+line_data = df.groupby(x_axis_column)[line_columns].sum()
+
+# Plot the line chart using Streamlit
+st.line_chart(line_data)
